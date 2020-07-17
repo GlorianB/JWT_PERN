@@ -19,15 +19,15 @@ const app = express();
 
 // Middlewares setup
 app.use(morgan('dev'));
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
+app.use(cors());
 
 
 // Routes definition
 
-app.use('/', authRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/', authRoutes);
 
 app.use('/', (req, res, next) => {
   return res.status(404).send('<h1>Page not found!</h1>')
